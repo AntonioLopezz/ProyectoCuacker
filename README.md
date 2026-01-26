@@ -47,9 +47,22 @@ El proyecto incluye un `Makefile` para una compilación sencilla.
     ./nombre_del_ejecutable
     ```
 
-## 📄 Documentación
+## 📖 Guía de Uso
 
-Para detalles teóricos sobre las decisiones de diseño y análisis de complejidad, consultar el archivo `Memoria_temas2y3.pdf` incluido en la raíz.
+Una vez ejecutado el programa, aparecerá un menú interactivo en la consola para gestionar el diccionario. El sistema funciona mediante la introducción de números para seleccionar las opciones.
 
----
-*Proyecto realizado para la asignatura de Estructuras de Datos.*
+### Comandos del Menú Principal:
+
+* **`1` - Insertar Cuac:** Añade una nueva entrada al diccionario. El programa te solicitará los datos necesarios (clave/palabra y definición/valor) para crear el objeto.
+* **`2` - Buscar Cuac:** Permite consultar si un elemento existe en el diccionario. Deberás introducir la clave del objeto y el programa devolverá su información asociada si la encuentra.
+* **`3` - Salir:** Finaliza la ejecución del programa y libera la memoria utilizada.
+
+**Ejemplo de flujo en consola:**
+
+```text
+Bienvenido al programa de Cuacs
+1. Insertar Cuac
+2. Buscar Cuac
+3. Salir
+Introduce una opcion: 1
+> Introduce la palabra clave: ...
