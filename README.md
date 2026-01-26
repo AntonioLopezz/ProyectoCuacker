@@ -1,95 +1,111 @@
-# Gestión de Diccionario de Datos (Cuacs) en C++ 🦆
+# Sistema de Gestión de Cuacs (Versión Árboles + Hash) 🦆
 
-Este repositorio contiene el desarrollo incremental de un sistema de gestión de datos implementado en C++. El proyecto explora y compara diferentes estructuras de datos para optimizar el almacenamiento y búsqueda de información.
+Este proyecto implementa un diccionario de mensajes (llamados "Cuacs") en C++. El sistema combina dos estructuras de datos avanzadas para optimizar el rendimiento: **Tablas Hash** para búsquedas rápidas por usuario y **Árboles Binarios de Búsqueda (ABB)** para mantener el orden cronológico y realizar consultas por rangos de fechas.
 
-## 📋 Descripción del Proyecto
+## 📂 Estructura del Proyecto
 
-El objetivo principal es implementar un diccionario de objetos (denominados `Cuacs`) aplicando conceptos avanzados de programación y estructuras de datos no lineales. El proyecto evoluciona a través de diferentes etapas (Temas 2 y 3), pasando de estructuras lineales básicas a implementaciones más complejas y eficientes.
+El código fuente está organizado de la siguiente manera:
 
-### 🚀 Evolución y Estructura
+* **`main.cpp`**: Punto de entrada principal. Contiene el intérprete de comandos y la lógica del menú.
+* **`DiccionarioCuacs`**: Clase contenedora que coordina la Tabla Hash y el Árbol.
+* **`TablaHash`**: Implementación de una tabla hash para indexar usuarios.
+* **`Arbol`**: Implementación de un Árbol Binario de Búsqueda para ordenar los mensajes.
+* **`Cuac`**: Objeto base que representa un mensaje (contiene usuario, fecha y texto).
+* **`Fecha`**: Clase auxiliar para el manejo preciso de fechas y horas.
 
-El código está organizado en carpetas numeradas que representan las distintas iteraciones y mejoras del software:
+## 🛠️ Compilación y Ejecución
 
-* **Versiones Iniciales (001 - 006):** Implementación base utilizando listas y vectores para la gestión secuencial de datos.
-* **Tema 2 - Hashing (Carpeta 200):** Refactorización del sistema para utilizar **Tablas Hash** (`TablaHash`), mejorando drásticamente la complejidad temporal en las búsquedas.
-* **Tema 3 - Árboles (Carpetas 300 - 302):** Implementación basada en **Árboles Binarios de Búsqueda (ABB)** (`Arbol`), permitiendo un ordenamiento natural de los datos y búsquedas logarítmicas.
+El proyecto incluye un archivo `Makefile` para automatizar la compilación.
 
-## 🛠️ Tecnologías y Conceptos Clave
-
-* **Lenguaje:** C++ (Estándar moderno).
-* **Estructuras de Datos:** Tablas Hash (resolución de colisiones), Árboles Binarios, Listas Enlazadas.
-* **Gestión de Memoria:** Uso intensivo de punteros y gestión dinámica de memoria.
-* **Diseño Modular:** Separación clara entre declaración (`.h`) e implementación (`.cpp`).
-* **Compilación:** Automatización mediante `Makefile` para facilitar la construcción en entornos Linux/Unix.
-
-## ✨ Optimizaciones Recientes
-
-Siguiendo principios de *Clean Code*, el proyecto ha sido refactorizado para incluir:
-* Eliminación de constructores redundantes para optimizar la inicialización de objetos.
-* Agrupación de operaciones de E/S (`std::cout`) para mejorar la legibilidad y reducir la sobrecarga de llamadas al sistema.
-* Modularización de clases auxiliares como `Fecha` y `Diccionario`.
-
-## 🔧 Instalación y Ejecución
-
-El proyecto incluye un `Makefile` para una compilación sencilla.
-
-1.  Clona el repositorio:
+1.  Abre una terminal en la carpeta del proyecto:
     ```bash
-    git clone [https://github.com/AntonioLopezz/ProyectoCuacker.git](https://github.com/AntonioLopezz/ProyectoCuacker.git)
+    cd main
     ```
-2.  Accede a la carpeta de la versión que desees probar (ej. `302` para la versión final con Árboles):
-    ```bash
-    cd Temas2y3/302
-    ```
-3.  Compila y ejecuta:
+2.  Compila el código:
     ```bash
     make
-    ./nombre_del_ejecutable
     ```
+3.  Ejecuta el programa (en Linux/Mac):
+    ```bash
+    ./main
+    ```
+    *O en Windows:* `main.exe`
 
 ## 📖 Guía de Uso y Comandos
 
-El programa funciona como un **intérprete de comandos**. Lee instrucciones línea por línea (ya sea escritas a mano o redirigidas desde un fichero).
+El programa no utiliza un menú numérico tradicional ("Pulse 1 para..."), sino que funciona como un **intérprete de comandos**. Lee instrucciones línea por línea desde la entrada estándar (`cin`).
 
-⚠️ **Importante:** El formato de la fecha debe ser rigurosamente `DD/MM/AAAA HH:MM:SS`.
-
-### 1. Inserción de Datos
-
-Existen dos tipos de entradas que se pueden añadir al diccionario:
-
-* **`pcuac` (Personal Cuac):** Mensaje predefinido.
-    * *Sintaxis:* `pcuac <usuario> <fecha> <hora> <numero_mensaje>`
-    * *Nota:* El número debe ser un entero entre 1 y 30 (corresponden a frases predefinidas en el sistema).
-    * *Ejemplo:* `pcuac @antonio 25/01/2024 14:30:00 5`
-
-* **`mcuac` (Media Cuac):** Mensaje de texto libre.
-    * *Sintaxis:* `mcuac <usuario> <fecha> <hora> <mensaje_texto>`
-    * *Ejemplo:* `mcuac @noticias 25/01/2024 10:00:00 Ola de calor en invierno`
-
-### 2. Consultas y Visualización
-
-* **`follow`:** Muestra todos los mensajes de un usuario específico.
-    * *Sintaxis:* `follow <usuario>`
-    * *Ejemplo:* `follow @antonio`
-
-* **`last`:** Muestra los últimos `N` mensajes introducidos (orden cronológico inverso).
-    * *Sintaxis:* `last <cantidad>`
-    * *Ejemplo:* `last 10`
-
-* **`date`:** Muestra los mensajes publicados en un rango de fechas específico.
-    * *Sintaxis:* `date <fecha_inicio> <hora_inicio> <fecha_fin> <hora_fin>`
-    * *Ejemplo:* `date 01/01/2024 00:00:00 31/01/2024 23:59:59`
-
-### 3. Salir
-* **`exit`:** Termina la ejecución del programa.
+### ⚠️ Formato de Fecha y Hora
+Es estricto. Cualquier fecha introducida debe seguir rigurosamente este formato (incluyendo las barras `/` y los dos puntos `:`):
+`DD/MM/AAAA HH:MM:SS`
 
 ---
 
-### Ejemplo completo de flujo de ejecución:
+### 1. Insertar Mensajes
+
+Existen dos comandos para añadir mensajes, dependiendo de si el contenido es predefinido o libre:
+
+#### A. `pcuac` (Mensaje Personal Predefinido)
+Inserta un mensaje seleccionando una frase de una lista preestablecida (del 1 al 30).
+
+* **Sintaxis:** `pcuac <usuario> <fecha_hora> <numero_mensaje>`
+* **Parámetros:**
+    * `usuario`: Nombre del usuario (sin espacios).
+    * `fecha_hora`: Formato `DD/MM/AAAA HH:MM:SS`.
+    * `numero_mensaje`: Un número entero del **1 al 30**.
+* **Ejemplo:**
+    ```text
+    pcuac @antonio 20/01/2024 10:30:00 5
+    ```
+    *(Esto publicará la frase predefinida número 5: "Enhorabuena, campeones!")*
+
+#### B. `mcuac` (Mensaje de Medio/Máquina)
+Inserta un mensaje con texto libre escrito por el usuario.
+
+* **Sintaxis:** `mcuac <usuario> <fecha_hora> <texto_libre>`
+* **Parámetros:**
+    * `texto_libre`: Todo lo que se escriba después de la hora se considerará parte del mensaje.
+* **Ejemplo:**
+    ```text
+    mcuac @noticias 21/01/2024 14:00:00 Ola de calor en pleno invierno
+    ```
+
+---
+
+### 2. Consultas y Visualización
+
+#### `follow` (Seguir Usuario)
+Busca en la **Tabla Hash** y muestra todos los mensajes asociados a un usuario específico.
+* **Sintaxis:** `follow <usuario>`
+* **Ejemplo:** `follow @antonio`
+
+#### `last` (Últimos Mensajes)
+Utiliza el **Árbol** para recuperar los últimos `N` mensajes introducidos en el sistema (orden cronológico inverso).
+* **Sintaxis:** `last <cantidad>`
+* **Ejemplo:** `last 10`
+
+#### `date` (Rango de Fechas)
+Muestra todos los mensajes publicados entre dos fechas dadas.
+* **Sintaxis:** `date <fecha_inicio> <hora_inicio> <fecha_fin> <hora_fin>`
+* **Ejemplo:**
+    ```text
+    date 01/01/2024 00:00:00 31/01/2024 23:59:59
+    ```
+
+### 3. Salir
+* **`exit`**: Cierra el programa.
+
+---
+
+### Ejemplo de flujo de ejecución completo
+
+Puedes copiar y pegar este bloque en la terminal para probarlo:
 
 ```text
-pcuac @usuario1 20/01/2024 12:00:00 1
-mcuac @diario 21/01/2024 09:30:00 Titular del dia
+pcuac @usuario1 01/05/2023 12:00:00 1
+mcuac @diario 02/05/2023 09:30:00 Noticia de ultima hora
+pcuac @usuario2 03/05/2023 18:45:00 15
 last 2
 follow @usuario1
+date 01/05/2023 00:00:00 02/05/2023 23:59:59
 exit
