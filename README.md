@@ -11,8 +11,8 @@ El objetivo principal es implementar un diccionario de objetos (denominados `Cua
 El código está organizado en carpetas numeradas que representan las distintas iteraciones y mejoras del software:
 
 * **Versiones Iniciales (001 - 006):** Implementación base utilizando listas y vectores para la gestión secuencial de datos.
-* [cite_start]**Tema 2 - Hashing (Carpeta 200):** Refactorización del sistema para utilizar **Tablas Hash** (`TablaHash`), mejorando drásticamente la complejidad temporal en las búsquedas.
-* [cite_start]**Tema 3 - Árboles (Carpetas 300 - 302):** Implementación basada en **Árboles Binarios de Búsqueda (ABB)** (`Arbol`), permitiendo un ordenamiento natural de los datos y búsquedas logarítmicas[cite: 5, 6].
+* **Tema 2 - Hashing (Carpeta 200):** Refactorización del sistema para utilizar **Tablas Hash** (`TablaHash`), mejorando drásticamente la complejidad temporal en las búsquedas.
+* **Tema 3 - Árboles (Carpetas 300 - 302):** Implementación basada en **Árboles Binarios de Búsqueda (ABB)** (`Arbol`), permitiendo un ordenamiento natural de los datos y búsquedas logarítmicas.
 
 ## 🛠️ Tecnologías y Conceptos Clave
 
@@ -20,7 +20,7 @@ El código está organizado en carpetas numeradas que representan las distintas 
 * **Estructuras de Datos:** Tablas Hash (resolución de colisiones), Árboles Binarios, Listas Enlazadas.
 * **Gestión de Memoria:** Uso intensivo de punteros y gestión dinámica de memoria.
 * **Diseño Modular:** Separación clara entre declaración (`.h`) e implementación (`.cpp`).
-* [cite_start]**Compilación:** Automatización mediante `Makefile` para facilitar la construcción en entornos Linux/Unix[cite: 2].
+* **Compilación:** Automatización mediante `Makefile` para facilitar la construcción en entornos Linux/Unix.
 
 ## ✨ Optimizaciones Recientes
 
@@ -35,7 +35,7 @@ El proyecto incluye un `Makefile` para una compilación sencilla.
 
 1.  Clona el repositorio:
     ```bash
-    git clone [https://github.com/TU_USUARIO/NOMBRE_DEL_REPO.git](https://github.com/TU_USUARIO/NOMBRE_DEL_REPO.git)
+    git clone [https://github.com/AntonioLopezz/ProyectoCuacker.git](https://github.com/AntonioLopezz/ProyectoCuacker.git)
     ```
 2.  Accede a la carpeta de la versión que desees probar (ej. `300` para árboles):
     ```bash
@@ -49,7 +49,7 @@ El proyecto incluye un `Makefile` para una compilación sencilla.
 
 ## 📄 Documentación
 
-[cite_start]Para detalles teóricos sobre las decisiones de diseño y análisis de complejidad, consultar el archivo `Memoria_temas2y3.pdf` incluido en la raíz[cite: 9].
+Para detalles teóricos sobre las decisiones de diseño y análisis de complejidad, consultar el archivo `Memoria_temas2y3.pdf` incluido en la raíz.
 
 ---
 *Proyecto realizado para la asignatura de Estructuras de Datos.*
