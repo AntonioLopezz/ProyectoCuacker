@@ -37,9 +37,9 @@ El proyecto incluye un `Makefile` para una compilación sencilla.
     ```bash
     git clone [https://github.com/AntonioLopezz/ProyectoCuacker.git](https://github.com/AntonioLopezz/ProyectoCuacker.git)
     ```
-2.  Accede a la carpeta de la versión que desees probar (ej. `300` para árboles):
+2.  Accede a la carpeta de la versión que desees probar (ej. `302` para la versión final con Árboles):
     ```bash
-    cd Temas2y3/300
+    cd Temas2y3/302
     ```
 3.  Compila y ejecuta:
     ```bash
@@ -47,22 +47,49 @@ El proyecto incluye un `Makefile` para una compilación sencilla.
     ./nombre_del_ejecutable
     ```
 
-## 📖 Guía de Uso
+## 📖 Guía de Uso y Comandos
 
-Una vez ejecutado el programa, aparecerá un menú interactivo en la consola para gestionar el diccionario. El sistema funciona mediante la introducción de números para seleccionar las opciones.
+El programa funciona como un **intérprete de comandos**. Lee instrucciones línea por línea (ya sea escritas a mano o redirigidas desde un fichero).
 
-### Comandos del Menú Principal:
+⚠️ **Importante:** El formato de la fecha debe ser rigurosamente `DD/MM/AAAA HH:MM:SS`.
 
-* **`1` - Insertar Cuac:** Añade una nueva entrada al diccionario. El programa te solicitará los datos necesarios (clave/palabra y definición/valor) para crear el objeto.
-* **`2` - Buscar Cuac:** Permite consultar si un elemento existe en el diccionario. Deberás introducir la clave del objeto y el programa devolverá su información asociada si la encuentra.
-* **`3` - Salir:** Finaliza la ejecución del programa y libera la memoria utilizada.
+### 1. Inserción de Datos
 
-**Ejemplo de flujo en consola:**
+Existen dos tipos de entradas que se pueden añadir al diccionario:
+
+* **`pcuac` (Personal Cuac):** Mensaje predefinido.
+    * *Sintaxis:* `pcuac <usuario> <fecha> <hora> <numero_mensaje>`
+    * *Nota:* El número debe ser un entero entre 1 y 30 (corresponden a frases predefinidas en el sistema).
+    * *Ejemplo:* `pcuac @antonio 25/01/2024 14:30:00 5`
+
+* **`mcuac` (Media Cuac):** Mensaje de texto libre.
+    * *Sintaxis:* `mcuac <usuario> <fecha> <hora> <mensaje_texto>`
+    * *Ejemplo:* `mcuac @noticias 25/01/2024 10:00:00 Ola de calor en invierno`
+
+### 2. Consultas y Visualización
+
+* **`follow`:** Muestra todos los mensajes de un usuario específico.
+    * *Sintaxis:* `follow <usuario>`
+    * *Ejemplo:* `follow @antonio`
+
+* **`last`:** Muestra los últimos `N` mensajes introducidos (orden cronológico inverso).
+    * *Sintaxis:* `last <cantidad>`
+    * *Ejemplo:* `last 10`
+
+* **`date`:** Muestra los mensajes publicados en un rango de fechas específico.
+    * *Sintaxis:* `date <fecha_inicio> <hora_inicio> <fecha_fin> <hora_fin>`
+    * *Ejemplo:* `date 01/01/2024 00:00:00 31/01/2024 23:59:59`
+
+### 3. Salir
+* **`exit`:** Termina la ejecución del programa.
+
+---
+
+### Ejemplo completo de flujo de ejecución:
 
 ```text
-Bienvenido al programa de Cuacs
-1. Insertar Cuac
-2. Buscar Cuac
-3. Salir
-Introduce una opcion: 1
-> Introduce la palabra clave: ...
+pcuac @usuario1 20/01/2024 12:00:00 1
+mcuac @diario 21/01/2024 09:30:00 Titular del dia
+last 2
+follow @usuario1
+exit
