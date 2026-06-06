@@ -1,111 +1,123 @@
-# Sistema de Gestión de Cuacs (Versión Árboles + Hash) 🦆
+# Cuac Management System (Trees + Hash Version) 🦆
 
-Este proyecto implementa un diccionario de mensajes (llamados "Cuacs") en C++. El sistema combina dos estructuras de datos avanzadas para optimizar el rendimiento: **Tablas Hash** para búsquedas rápidas por usuario y **Árboles Binarios de Búsqueda (ABB)** para mantener el orden cronológico y realizar consultas por rangos de fechas.
+This project implements a message dictionary (called "Cuacs") in C++. The system combines two advanced data structures to optimize performance: **Hash Tables** for fast user-based lookups and **Binary Search Trees (BST)** for maintaining chronological order and performing date-range queries.
 
-## 📂 Estructura del Proyecto
+## 📂 Project Structure
 
-El código fuente está organizado de la siguiente manera:
+The source code is organized as follows:
 
-* **`main.cpp`**: Punto de entrada principal. Contiene el intérprete de comandos y la lógica del menú.
-* **`DiccionarioCuacs`**: Clase contenedora que coordina la Tabla Hash y el Árbol.
-* **`TablaHash`**: Implementación de una tabla hash para indexar usuarios.
-* **`Arbol`**: Implementación de un Árbol Binario de Búsqueda para ordenar los mensajes.
-* **`Cuac`**: Objeto base que representa un mensaje (contiene usuario, fecha y texto).
-* **`Fecha`**: Clase auxiliar para el manejo preciso de fechas y horas.
+* **`main.cpp`**: Main entry point. Contains the command interpreter and menu logic.
+* **`DiccionarioCuacs`**: Container class that coordinates the Hash Table and the Tree.
+* **`TablaHash`**: Hash table implementation for indexing users.
+* **`Arbol`**: Binary Search Tree implementation for sorting messages.
+* **`Cuac`**: Base object representing a message (contains user, date, and text).
+* **`Fecha`**: Helper class for precise date and time handling.
 
-## 🛠️ Compilación y Ejecución
+## 🛠️ Build & Run
 
-El proyecto incluye un archivo `Makefile` para automatizar la compilación.
+The project includes a `Makefile` to automate compilation.
 
-1.  Abre una terminal en la carpeta del proyecto:
+1.  Open a terminal in the project folder:
     ```bash
     cd main
     ```
-2.  Compila el código:
+2.  Compile the code:
     ```bash
     make
     ```
-3.  Ejecuta el programa (en Linux/Mac):
+3.  Run the program (Linux/Mac):
     ```bash
     ./main
     ```
-    *O en Windows:* `main.exe`
+    *Or on Windows:* `main.exe`
 
-## 📖 Guía de Uso y Comandos
+## 📖 Usage Guide & Commands
 
-El programa no utiliza un menú numérico tradicional ("Pulse 1 para..."), sino que funciona como un **intérprete de comandos**. Lee instrucciones línea por línea desde la entrada estándar (`cin`).
+The program does not use a traditional numbered menu ("Press 1 for..."). Instead, it works as a **command interpreter**, reading instructions line by line from standard input (`cin`).
 
-### ⚠️ Formato de Fecha y Hora
-Es estricto. Cualquier fecha introducida debe seguir rigurosamente este formato (incluyendo las barras `/` y los dos puntos `:`):
-`DD/MM/AAAA HH:MM:SS`
+### ⚠️ Date and Time Format
+
+The format is strict. Every date entered must follow this format exactly (including slashes `/` and colons `:`):
+
+`DD/MM/YYYY HH:MM:SS`
 
 ---
 
-### 1. Insertar Mensajes
+### 1. Inserting Messages
 
-Existen dos comandos para añadir mensajes, dependiendo de si el contenido es predefinido o libre:
+There are two commands for adding messages, depending on whether the content is predefined or free-form:
 
-#### A. `pcuac` (Mensaje Personal Predefinido)
-Inserta un mensaje seleccionando una frase de una lista preestablecida (del 1 al 30).
+#### A. `pcuac` (Predefined Personal Message)
 
-* **Sintaxis:** `pcuac <usuario> <fecha_hora> <numero_mensaje>`
-* **Parámetros:**
-    * `usuario`: Nombre del usuario (sin espacios).
-    * `fecha_hora`: Formato `DD/MM/AAAA HH:MM:SS`.
-    * `numero_mensaje`: Un número entero del **1 al 30**.
-* **Ejemplo:**
+Inserts a message by selecting a phrase from a preset list (1 to 30).
+
+* **Syntax:** `pcuac <user> <datetime> <message_number>`
+* **Parameters:**
+    * `user`: Username (no spaces).
+    * `datetime`: Format `DD/MM/YYYY HH:MM:SS`.
+    * `message_number`: An integer from **1 to 30**.
+* **Example:**
     ```text
     pcuac @antonio 20/01/2024 10:30:00 5
     ```
-    *(Esto publicará la frase predefinida número 5: "Enhorabuena, campeones!")*
+    *(This will publish predefined phrase number 5: "Congratulations, champions!")*
 
-#### B. `mcuac` (Mensaje de Medio/Máquina)
-Inserta un mensaje con texto libre escrito por el usuario.
+#### B. `mcuac` (Free-form Message)
 
-* **Sintaxis:** `mcuac <usuario> <fecha_hora> <texto_libre>`
-* **Parámetros:**
-    * `texto_libre`: Todo lo que se escriba después de la hora se considerará parte del mensaje.
-* **Ejemplo:**
+Inserts a message with free text written by the user.
+
+* **Syntax:** `mcuac <user> <datetime> <free_text>`
+* **Parameters:**
+    * `free_text`: Everything written after the time will be treated as part of the message.
+* **Example:**
     ```text
-    mcuac @noticias 21/01/2024 14:00:00 Ola de calor en pleno invierno
+    mcuac @news 21/01/2024 14:00:00 Heatwave in the middle of winter
     ```
 
 ---
 
-### 2. Consultas y Visualización
+### 2. Queries & Display
 
-#### `follow` (Seguir Usuario)
-Busca en la **Tabla Hash** y muestra todos los mensajes asociados a un usuario específico.
-* **Sintaxis:** `follow <usuario>`
-* **Ejemplo:** `follow @antonio`
+#### `follow` (Follow User)
 
-#### `last` (Últimos Mensajes)
-Utiliza el **Árbol** para recuperar los últimos `N` mensajes introducidos en el sistema (orden cronológico inverso).
-* **Sintaxis:** `last <cantidad>`
-* **Ejemplo:** `last 10`
+Searches the **Hash Table** and displays all messages associated with a specific user.
 
-#### `date` (Rango de Fechas)
-Muestra todos los mensajes publicados entre dos fechas dadas.
-* **Sintaxis:** `date <fecha_inicio> <hora_inicio> <fecha_fin> <hora_fin>`
-* **Ejemplo:**
+* **Syntax:** `follow <user>`
+* **Example:** `follow @antonio`
+
+#### `last` (Latest Messages)
+
+Uses the **Tree** to retrieve the last `N` messages entered in the system (reverse chronological order).
+
+* **Syntax:** `last <amount>`
+* **Example:** `last 10`
+
+#### `date` (Date Range)
+
+Displays all messages published between two given dates.
+
+* **Syntax:** `date <start_date> <start_time> <end_date> <end_time>`
+* **Example:**
     ```text
     date 01/01/2024 00:00:00 31/01/2024 23:59:59
     ```
 
-### 3. Salir
-* **`exit`**: Cierra el programa.
+### 3. Exit
+
+* **`exit`**: Closes the program.
 
 ---
 
-### Ejemplo de flujo de ejecución completo
+### Full execution flow example
 
-Puedes copiar y pegar este bloque en la terminal para probarlo:
+You can copy and paste this block into the terminal to try it out:
 
 ```text
-pcuac @usuario1 01/05/2023 12:00:00 1
-mcuac @diario 02/05/2023 09:30:00 Noticia de ultima hora
-pcuac @usuario2 03/05/2023 18:45:00 15
+pcuac @user1 01/05/2023 12:00:00 1
+mcuac @news 02/05/2023 09:30:00 Breaking news
+pcuac @user2 03/05/2023 18:45:00 15
 last 2
-follow @usuario1
+follow @user1
 date 01/05/2023 00:00:00 02/05/2023 23:59:59
 exit
+```
